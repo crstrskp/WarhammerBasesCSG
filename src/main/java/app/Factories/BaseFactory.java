@@ -1,4 +1,4 @@
-package org.example;
+package app.Factories;
 
 import org.abstractica.javacsg.Geometry3D;
 import org.abstractica.javacsg.JavaCSG;
@@ -11,12 +11,10 @@ import java.util.List;
 public class BaseFactory {
     private static JavaCSG csg;
 
-
     public BaseFactory(JavaCSG csg)
     {
         this.csg = csg;
     }
-
 
    public static Geometry3D buildRectangularBase(double width, double height, double chamfer_mm, double borderWidth_mm, double baseHeight_mm)
    {
@@ -44,6 +42,11 @@ public class BaseFactory {
        base = csg.translate3D(-borderWidth_mm, -borderWidth_mm, 0).transform(base);
 
        return base;
+   }
+
+   public static Geometry3D buildCircularBase(double diameter, double height, double chamfer_mm)
+   {
+       return csg.cone3D(diameter+chamfer_mm, diameter, height, 256, false);
    }
 
 }
