@@ -1,4 +1,5 @@
-package org.example;
+package app;
+import io.javalin.http.Context;
 
 public class UserValues
 {
@@ -13,7 +14,18 @@ public class UserValues
     private static double spacing_mm;
     private static double movementTrayHeight_mm;
 
+    public static void setDefaults(Context ctx)
+    {
+        UserValues.setBaseDiameter_mm(25.5);
+        UserValues.setMovementTrayHeight_mm(5);
+        UserValues.setBorderWidth_mm(.8);
+        UserValues.setSpacing_mm(0);
+        UserValues.setBaseHeight_mm(3.5);
+        UserValues.setChamfer_mm(1.5);
 
+        // Update view with default values
+        ctx.render("warhammerbase.html");
+    }
 
 
     public static double getBaseHeight_mm() {
