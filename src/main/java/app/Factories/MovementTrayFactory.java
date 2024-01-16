@@ -9,9 +9,11 @@ import java.util.List;
 public class MovementTrayFactory {
 
     private static JavaCSG csg;
+    public static MovementTrayFactory instance;
 
     public MovementTrayFactory(JavaCSG csg)
     {
+        instance = this;
         MovementTrayFactory.csg = csg;
     }
     public static Geometry3D createRectangularMovementTrayWithRoundBases(int x, int y)
