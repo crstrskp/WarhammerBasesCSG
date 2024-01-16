@@ -11,8 +11,10 @@ import java.util.List;
 public class BaseFactory {
     private static JavaCSG csg;
 
+    public static BaseFactory instance;
     public BaseFactory(JavaCSG csg)
     {
+        instance = this;
         this.csg = csg;
     }
 
