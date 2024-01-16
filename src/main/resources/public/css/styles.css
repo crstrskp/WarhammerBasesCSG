@@ -1,4 +1,9 @@
-<style>
+.container {
+    width: 50%; /* Adjust the width as needed */
+    margin: 0 auto; /* This centers the container */
+    transform: scale(0.8); /* This scales down everything inside the container */
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -55,4 +60,3 @@ img {
     display: block;
     margin: 20px auto;
 }
-</style>
