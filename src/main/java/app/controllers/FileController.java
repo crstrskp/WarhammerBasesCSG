@@ -16,7 +16,6 @@ public class FileController {
     {
         Geometry3D shape = null;
 
-//        if (ctx.formParam("formName").equals("movementtray"))
         if (ctx.attribute("selectedFile").equals("base.stl"))
         {
             shape = BaseFactory.buildCircularBase(
