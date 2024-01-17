@@ -25,8 +25,15 @@
         </header>
 
         <footer th:fragment="footer">
-            <a th:if="${#ctx.session.currentUser} == null" th:href="@{/createuser}">Create account</a>
-            <a th:if="${#ctx.session.currentUser} != null" th:href="@{/logout}">Logout</a>
+            <div class="lifehack_item">
+                <a href="https://github.com/crstrskp/WarhammerBasesCSG.git">
+                    <div class="lifehack-item-image">
+                        <img th:src="@{/images/gitlogo.png}" alt="github link" width="50" height="50"/>
+                    </div>
+                </a>
+            </div>
+<!--            <a th:if="${#ctx.session.currentUser} == null" th:href="@{/createuser}">Create account</a>-->
+<!--            <a th:if="${#ctx.session.currentUser} != null" th:href="@{/logout}">Logout</a>-->
             <a href="/">Home</a>
         </footer>
     </div>
