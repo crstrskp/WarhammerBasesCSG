@@ -13,6 +13,8 @@ public class UserValues
     private static double borderWidth_mm;
     private static double spacing_mm;
     private static double movementTrayHeight_mm;
+    private static int movementTrayX;
+    private static int movementTrayY;
 
     public static void setDefaults(Context ctx)
     {
@@ -82,5 +84,21 @@ public class UserValues
     public static void setMovementTrayHeight_mm(double movementTrayHeight_mm)
     {
         UserValues.movementTrayHeight_mm = movementTrayHeight_mm;
+    }
+
+    public static void setMovementTrayX(int movementTrayX) {
+        UserValues.movementTrayX = movementTrayX;
+    }
+
+    public static int getMovementTrayX() {
+        return movementTrayX;
+    }
+
+    public static void setMovementTrayY(int movementTrayY) {
+        UserValues.movementTrayY = movementTrayY;
+    }
+
+    public static int getMovementTrayY() {
+        return movementTrayY;
     }
 }
