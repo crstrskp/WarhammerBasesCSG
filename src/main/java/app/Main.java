@@ -3,6 +3,8 @@ package app;
 import app.Factories.BaseFactory;
 import app.Factories.MovementTrayFactory;
 import app.config.ThymeleafConfig;
+import app.controllers.FileController;
+import app.controllers.MovementTrayController;
 import app.controllers.WarhammerBaseController;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
@@ -20,7 +22,7 @@ public class Main {
         }).start(7070);
 
         WarhammerBaseController.addRoutes(app);
-
+        MovementTrayController.addRoutes(app);
         // routing
         app.get("/", ctx -> ctx.render("index.html"));
 
@@ -33,7 +35,7 @@ public class Main {
 
         BaseFactory bf = new BaseFactory(csg);
         MovementTrayFactory mtf = new MovementTrayFactory(csg);
-        WarhammerBaseController.setCsg(csg);
+        FileController.setCsg(csg);
 
         UserValues.setBaseDiameter_mm(25.5);
         UserValues.setMovementTrayHeight_mm(5);
@@ -42,7 +44,7 @@ public class Main {
         UserValues.setBaseHeight_mm(3.5);
         UserValues.setChamfer_mm(1.5);
 
-//        csg.view(mtf.createRectangularMovementTrayWithRoundBases(2, 2));
+        csg.view(mtf.createRectangularMovementTrayWithRoundBases(3, 5));
 
 //        var diameter = UserValues.getBaseDiameter_mm();
 //        var height = UserValues.getBaseHeight_mm();
