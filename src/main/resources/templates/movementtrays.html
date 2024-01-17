@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{fragments :: head('tjorne')}"></div>
+
+<body>
+
+<div id="page-container">
+  <div id="page-content">
+    <div th:replace="~{fragments :: header('warhammer website')}"></div>
+
+    <div id="lifehack_menu">
+
+      <div class="lifehack_item">
+        <a href="https://github.com/crstrskp/WarhammerBasesCSG.git">
+          <div class="lifehack-item-image">
+            <img th:src="@{/images/gitlogo.png}" alt="github link" width="50" height="50"/>
+          </div>
+        </a>
+      </div>
+      <body>
+      <h1>Please fill in dimensions</h1>
+      <form method="post">
+        <div>
+          <label for="movementTrayX">Rows: </label>
+          <input type="number" id="movementTrayX" name="movementTrayX" step="1" value="3" required>
+        </div>
+        <div>
+          <label for="movementTrayY">Columns: </label>
+          <input type="number" id="movementTrayY" name="movementTrayY" step="1" value="5" required>
+        </div>
+        <div>
+          <label for="chamfer_mm">Chamfer (mm): </label>
+          <input type="number" id="chamfer_mm" name="chamfer_mm" step="0.01" value="1.5" required>
+        </div>
+        <div>
+          <label for="baseDiameter_mm">Base Diameter (mm): </label>
+          <input type="number" id="baseDiameter_mm" name="baseDiameter_mm" step="0.01" value="25.5" required>
+        </div>
+        <div>
+          <label for="baseHeight_mm">Base Height (mm): </label>
+          <input type="number" id="baseHeight_mm" name="baseHeight_mm" step="0.01" value="3" required>
+        </div>
+        <div>
+          <label for="borderWidth_mm">Border Width (mm): </label>
+          <input type="number" id="borderWidth_mm" name="borderWidth_mm" step="0.01" value=".8" required>
+        </div>
+        <div>
+          <label for="spacing_mm">Spacing (mm): </label>
+          <input type="number" id="spacing_mm" name="spacing_mm" step="0.2" value="0" required>
+        </div>
+        <div>
+          <label for="movementTrayHeight_mm">Movement Tray Height (mm): </label>
+          <input type="number" id="movementTrayHeight_mm" name="movementTrayHeight_mm" step="0.1" value="5"  required>
+        </div>
+        <br>
+        <input type="hidden" name="formName" value="movementtray">
+
+        <button type="submit">Submit</button>
+        <button type="submit" formaction="/downloadMovementTray">Download</button>
+
+        <button type="reset">Reset</button>
+      </form>
+      <br>
+      <img src="placeholder_image1.jpg" alt="Image 1">
+      <img src="placeholder_image2.jpg" alt="Image 2">
+      </body>
+
+    </div>
+
+    <div th:replace="~{fragments :: footer}"></div>
+  </div>
+</div>
+</body>
+</html>
