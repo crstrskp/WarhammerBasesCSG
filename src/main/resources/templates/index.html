@@ -5,26 +5,26 @@
 
 <body>
 
-<div id="page-container">
+<div id="main-container">
     <div id="page-content">
         <div th:replace="~{fragments :: header('Hej Rasmus')}"></div>
 
-        <div id="lifehack_menu">
+        <div id="tabletop_menu">
 
-            <div class="lifehack_item">
+            <div class="tabletop_item">
                 <a href="/movementtrays">
-                    <div class="lifehack-item-image">
+                    <div class="tabletop-item-image">
                         <img th:src="@{/images/movementTray.png}"/>
                     </div>
-                    <div class="lifehack_title">
+                    <div class="tabletop_title">
                         Movement Trays
                     </div>
                 </a>
             </div>
 
-            <div class="lifehack_item">
+            <div class="tabletop_item">
                 <a href="/warhammerbase">
-                    <div class="lifehack-item-image">
+                    <div class="tabletop-item-image">
                         <img th:src="@{/images/base.png}"/>
                     </div>
                     <div class="lifehack_title">
@@ -32,53 +32,7 @@
                     </div>
                 </a>
             </div>
-
-<!--            <div class="lifehack_item">-->
-<!--                <a href="/coffee">-->
-<!--                    <div class="lifehack-item-image">-->
-<!--                        <img th:src="@{/images/coffeemixer.png}"/>-->
-<!--                    </div>-->
-<!--                    <div class="lifehack_title">-->
-<!--                        Coffee Mixer-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
-
-<!--            <div class="lifehack_item">-->
-<!--                <a href="/valuta">-->
-<!--                    <div class="lifehack-item-image">-->
-<!--                        <img th:src="@{/images/valuta.png}"/>-->
-<!--                    </div>-->
-<!--                    <div class="lifehack_title">-->
-<!--                        Currency Converter-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
-
-<!--            <div class="lifehack_item">-->
-<!--                <a href="/softdrinks">-->
-<!--                    <div class="lifehack-item-image">-->
-<!--                        <img th:src="@{/images/softdrinks.png}"/>-->
-<!--                    </div>-->
-<!--                    <div class="lifehack_title">-->
-<!--                        Softdrink Advisor-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
-
-<!--            <div class="lifehack_item">-->
-<!--                <a href="/boderegner">-->
-<!--                    <div class="lifehack-item-image">-->
-<!--                        <img th:src="@{/images/speed.png}"/>-->
-<!--                    </div>-->
-<!--                    <div class="lifehack_title">-->
-<!--                        Speeding Calculator-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
-
-<!--        </div>-->
-
+        </div>
         <div th:replace="~{fragments :: footer}"></div>
     </div>
 </div>
