@@ -15,6 +15,9 @@ public class UserValues
     private static double movementTrayHeight_mm;
     private static int movementTrayX;
     private static int movementTrayY;
+    private static boolean addHoleForMagnet;
+    private static double magnetDiameter;
+    private static double magnetHoleHeight;
 
     public static void setDefaults(Context ctx)
     {
@@ -100,5 +103,29 @@ public class UserValues
 
     public static int getMovementTrayY() {
         return movementTrayY;
+    }
+
+    public static boolean getAddHoleForMagnet() {
+        return addHoleForMagnet;
+    }
+
+    public static void setAddHoleForMagnet(boolean addHoleForMagnet) {
+        UserValues.addHoleForMagnet = addHoleForMagnet;
+    }
+
+    public static double getMagnetDiameter() {
+        return magnetDiameter;
+    }
+
+    public static void setMagnetDiameter(double magnetDiameter) {
+        UserValues.magnetDiameter = magnetDiameter;
+    }
+
+    public static double getMagnetHoleHeight() {
+        return magnetHoleHeight;
+    }
+
+    public static void setMagnetHoleHeight(double magnetHoleHeight) {
+        UserValues.magnetHoleHeight = magnetHoleHeight;
     }
 }
