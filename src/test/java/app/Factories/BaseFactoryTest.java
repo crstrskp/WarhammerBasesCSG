@@ -3,8 +3,10 @@ package app.Factories;
 import app.UserValues;
 import org.abstractica.javacsg.JavaCSG;
 import org.abstractica.javacsg.JavaCSGFactory;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 public class BaseFactoryTest {
+    @Test
     public static void circleBaseTest()
     {
         JavaCSG csg = JavaCSGFactory.createDefault();
