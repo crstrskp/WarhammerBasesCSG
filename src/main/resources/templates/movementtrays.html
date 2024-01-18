@@ -5,19 +5,12 @@
 
 <body>
 
-<div id="page-container">
+<div id="main-container">
   <div id="page-content">
     <div th:replace="~{fragments :: header('warhammer website')}"></div>
 
-    <div id="lifehack_menu">
+    <div id="input_menu">
 
-      <div class="lifehack_item">
-        <a href="https://github.com/crstrskp/WarhammerBasesCSG.git">
-          <div class="lifehack-item-image">
-            <img th:src="@{/images/gitlogo.png}" alt="github link" width="50" height="50"/>
-          </div>
-        </a>
-      </div>
       <body>
       <h1>Please fill in dimensions</h1>
       <form method="post">
@@ -53,15 +46,30 @@
           <label for="movementTrayHeight_mm">Movement Tray Height (mm): </label>
           <input type="number" id="movementTrayHeight_mm" name="movementTrayHeight_mm" step="0.1" value="5"  required>
         </div>
+        <div>
+          <label for="addHoleForMagnet"> Add hole for magnet</label>
+          <input type="checkbox" id="addHoleForMagnet" name="addHoleForMagnet" value="true">
+        </div>
         <br>
-        <input type="hidden" name="formName" value="movementtray">
+        <div id="magnetParams" style="display: block;">
+          <div>
+            <label for="magnetDiameter_mm">Magnet Diameter (mm): </label>
+            <input type="number" id="magnetDiameter_mm" name="magnetDiameter_mm" step="0.1" value="2.2" >
+          </div>
+          <div>
+            <label for="magnetHeight_mm">Magnet Height (mm): </label>
+            <input type="number" id="magnetHeight_mm" name="magnetHeight_mm" step="0.1" value="1" >
+          </div>
+        </div>
+<!--        <button type="submit">Submit</button>-->
+        <button type="submit" id="download" formaction="/downloadMovementTray">Download</button>
 
-        <button type="submit">Submit</button>
-        <button type="submit" formaction="/downloadMovementTray">Download</button>
-
-        <button type="reset">Reset</button>
+<!--        <button type="reset">Reset</button>-->
       </form>
       <br>
+
+      <div th:replace="~{modal :: #myModal}"></div>
+
       <img src="placeholder_image1.jpg" alt="Image 1">
       <img src="placeholder_image2.jpg" alt="Image 2">
       </body>
@@ -71,5 +79,7 @@
     <div th:replace="~{fragments :: footer}"></div>
   </div>
 </div>
+<script src="../js/modal.js"></script>
+<script src="../js/movementtray.js"></script>
 </body>
 </html>
