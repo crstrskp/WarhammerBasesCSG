@@ -60,7 +60,8 @@ public class BaseFactory {
             shape = csg.difference3D(shape, magnetHole);
 
             // rotate 180 degrees for easier printing
-            shape = csg.rotate3DX(csg.degrees(180)).transform(shape);
+            shape = csg.rotate3DZ(csg.degrees(180)).transform(shape);
+            shape = csg.translate3DZ(-height).transform(shape);
         }
 
         return shape;
