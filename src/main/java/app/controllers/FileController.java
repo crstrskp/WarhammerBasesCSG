@@ -34,7 +34,6 @@ public class FileController {
             ctx.result("Error: No file selected");
         }
 
-
         try
         {
             var name = ctx.attribute("selectedFile");
