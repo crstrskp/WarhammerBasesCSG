@@ -29,40 +29,10 @@ public class Main {
         app.post("/", ctx -> UserValues.setDefaults(ctx));
 
 
-
-
         JavaCSG csg = JavaCSGFactory.createDefault();
 
         BaseFactory bf = new BaseFactory(csg);
         MovementTrayFactory mtf = new MovementTrayFactory(csg);
         FileController.setCsg(csg);
-
-        UserValues.setBaseDiameter_mm(25.5);
-        UserValues.setMovementTrayHeight_mm(5);
-        UserValues.setBorderWidth_mm(.8);
-        UserValues.setSpacing_mm(0);
-        UserValues.setBaseHeight_mm(3.5);
-        UserValues.setChamfer_mm(1.5);
-
-        csg.view(mtf.createRectangularMovementTrayWithRoundBases(3, 5));
-
-//        var diameter = UserValues.getBaseDiameter_mm();
-//        var height = UserValues.getBaseHeight_mm();
-//        var chamfer = UserValues.getChamfer_mm();
-//
-//        try {
-//            var shape = bf.buildCircularBase(diameter, height, chamfer);
-//
-//            var box = csg.box3D(10, 10, 10, false);
-////            csg.cache(shape);
-//            csg.saveSTL("OpenSCAD/output/shape.stl", shape);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
-//        csg.saveSTL();
-//        csg.view(p1);
-
-
     }
 }
