@@ -45,6 +45,28 @@ public class MovementTrayFactory {
         }
         base = csg.difference3D(base, holes);
 
+        if (UserValues.getAddHoleForMagnet())
+        {
+            var magnetHoles = new ArrayList<Geometry3D>();
+            var holeHeight = UserValues.getMagnetHoleHeight();
+            var diameter = UserValues.getMagnetDiameter();
+            Geometry3D magnetHoleCutout = csg.cylinder3D(diameter, holeHeight, 128, false);
+            magnetHoleCutout = csg.translate3D((0.5 * UserValues.getBaseDiameter_mm()), (0.5 * UserValues.getBaseDiameter_mm()), UserValues.getMovementTrayHeight_mm() - holeHeight).transform(magnetHoleCutout);
+
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < y; j++) {
+                    var magnetHole = csg.translate3D(
+                            (UserValues.getSpacing_mm() + UserValues.getBaseDiameter_mm()) * i,
+                            (UserValues.getSpacing_mm() + UserValues.getBaseDiameter_mm()) * j,
+                            UserValues.getMovementTrayHeight_mm() - UserValues.getBaseHeight_mm() - holeHeight
+                    ).transform(magnetHoleCutout);
+
+                    magnetHoles.add(magnetHole);
+                }
+            }
+            base = csg.difference3D(base, magnetHoles);
+        }
+
         return base;
     }
 }
