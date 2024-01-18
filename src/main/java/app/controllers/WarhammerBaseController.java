@@ -12,21 +12,21 @@ public class WarhammerBaseController {
     public static void addRoutes(Javalin app) {
         app.get("/warhammerbase", ctx -> ctx.render("warhammerbase.html"));
 
-        app.get("/downloadBase", ctx -> downloadBase(ctx));
+        app.post("/downloadBase", ctx -> downloadBase(ctx));
     }
 
     private static void downloadBase(Context ctx)
     {
-        var chamfer = ctx.queryParam("chamfer_mm");
-        var baseDiameter = ctx.queryParam("baseDiameter_mm");
-        var baseHeight = ctx.queryParam("baseHeight_mm");
+        var chamfer =       ctx.formParam("chamfer_mm");
+        var baseDiameter =  ctx.formParam("baseDiameter_mm");
+        var baseHeight =    ctx.formParam("baseHeight_mm");
 
         UserValues.setChamfer_mm(Double.parseDouble(chamfer));
         UserValues.setBaseDiameter_mm(Double.parseDouble(baseDiameter));
         UserValues.setBaseHeight_mm(Double.parseDouble(baseHeight));
 
         ctx.attribute("selectedFile", "base.stl");
-
+        FileController.generateFile(ctx);
         FileController.downloadFile(ctx);
     }
 }
