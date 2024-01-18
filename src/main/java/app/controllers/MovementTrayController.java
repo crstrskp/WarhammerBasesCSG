@@ -9,7 +9,9 @@ public class MovementTrayController
     public static void addRoutes(Javalin app) {
         app.get("/movementtrays", ctx -> ctx.render("movementtrays.html"));
 
-        app.post("/downloadMovementTray", ctx -> downloadMovementTray(ctx));
+        app.post("/downloadMovementTray", ctx -> {
+            downloadMovementTray(ctx);
+        });
     }
     public static void downloadMovementTray(Context ctx)
     {
@@ -19,6 +21,7 @@ public class MovementTrayController
         var borderWidth =           ctx.formParam("borderWidth_mm");
         var spacing =               ctx.formParam("spacing_mm");
         var movementTrayHeight =    ctx.formParam("movementTrayHeight_mm");
+        var addHoleForMagnet =      ctx.formParam("addHoleForMagnet");
 
         UserValues.setChamfer_mm(Double.parseDouble(chamfer));
         UserValues.setBaseDiameter_mm(Double.parseDouble(baseDiameter));
@@ -26,6 +29,7 @@ public class MovementTrayController
         UserValues.setBorderWidth_mm(Double.parseDouble(borderWidth));
         UserValues.setSpacing_mm(Double.parseDouble(spacing));
         UserValues.setMovementTrayHeight_mm(Double.parseDouble(movementTrayHeight));
+        UserValues.setAddHoleForMagnet(addHoleForMagnet != null ? true : false);
 
         UserValues.setMovementTrayX(Integer.parseInt(ctx.formParam("movementTrayX")));
         UserValues.setMovementTrayY(Integer.parseInt(ctx.formParam("movementTrayY")));
