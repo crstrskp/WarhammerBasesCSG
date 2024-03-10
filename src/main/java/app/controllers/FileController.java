@@ -31,19 +31,23 @@ public class FileController {
         }
         else
         {
+            System.out.println("Error: No file selected");
             ctx.result("Error: No file selected");
         }
 
         try
         {
             var name = ctx.attribute("selectedFile");
-            csg.saveSTL("OpenSCAD/output/"+name, shape);
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
+          //  csg.saveSTL("OpenSCAD/"+name, shape);
+            csg.view(shape);
+            convertSCADtoSTL();
+            System.out.println("File saved as: " + name);
         }
         catch (NullPointerException e)
         {
+            System.out.println("Caught NullPointerException:");
+            System.out.println(e);
+            System.out.println();
             throw new RuntimeException(e);
         }
 
@@ -52,7 +56,7 @@ public class FileController {
 
     public static void downloadFile(Context ctx)
     {
-        var file = new File("OpenSCAD/output/" + ctx.attribute("selectedFile"));
+        var file = new File("model.stl");
         try
         {
             InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
@@ -65,5 +69,34 @@ public class FileController {
     }
     public static void setCsg(JavaCSG csg) {
         FileController.csg = csg;
+    }
+
+    public static void convertSCADtoSTL()
+    {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process process = runtime.exec("openscad --export-format binstl -o model.stl OpenSCAD/View0.scad");
+
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+            // Read the output from the command
+            System.out.println("Standard output:");
+            String s;
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            // Read any errors from the attempted command
+            System.out.println("Standard error:");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            int exitVal = process.waitFor();
+            System.out.println("Exit value: " + exitVal);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
