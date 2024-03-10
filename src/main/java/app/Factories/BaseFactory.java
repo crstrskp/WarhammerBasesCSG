@@ -52,12 +52,12 @@ public class BaseFactory {
     {
         var shape = csg.cone3D(diameter + chamfer_mm, diameter, height, 256, false);
 
-        if (UserValues.getAddHoleForMagnet())
+        if (UserValues.getHollowBase())
         {
-            var magnetHoleDiameter = UserValues.getMagnetDiameter();
-            var magnetHoleHeight = UserValues.getMagnetHoleHeight();
-            var magnetHole = csg.cylinder3D(magnetHoleDiameter, magnetHoleHeight, 128, false);
-            shape = csg.difference3D(shape, magnetHole);
+            var thickness = UserValues.getBaseThickness_mm();
+
+            var cutout = csg.cone3D(diameter + chamfer_mm - thickness, diameter - thickness, height-thickness, 256, false);
+            shape = csg.difference3D(shape, cutout);
 
             // rotate 180 degrees for easier printing
             shape = csg.rotate3DZ(csg.degrees(180)).transform(shape);
