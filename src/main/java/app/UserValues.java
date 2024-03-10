@@ -19,6 +19,9 @@ public class UserValues
     private static double magnetDiameter;
     private static double magnetHoleHeight;
 
+    private static boolean hollowBase;
+    private static double baseThickness_mm;
+
     public static void setDefaults(Context ctx)
     {
         UserValues.setBaseDiameter_mm(25.5);
@@ -127,5 +130,25 @@ public class UserValues
 
     public static void setMagnetHoleHeight(double magnetHoleHeight) {
         UserValues.magnetHoleHeight = magnetHoleHeight;
+    }
+
+    public static void setBaseThickness_mm(double baseThickness_mm)
+    {
+        UserValues.baseThickness_mm = baseThickness_mm;
+    }
+
+    public static double getBaseThickness_mm()
+    {
+        return baseThickness_mm;
+    }
+
+    public static void setHollowBase(boolean hollowBase)
+    {
+        UserValues.hollowBase = hollowBase;
+    }
+
+    public static boolean getHollowBase()
+    {
+        return hollowBase;
     }
 }
