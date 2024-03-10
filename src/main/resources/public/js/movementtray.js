@@ -9,3 +9,15 @@ magnetCheckbox.onchange = function() {
         magnetParams.style.display = 'none';
     }
 }
+
+var hollowParams = document.getElementById("hollowParams");
+hollowParams.style.display = 'none';
+
+var hollowCheckbox = document.getElementById("makeHollow");
+hollowCheckbox.onchange = function() {
+    if (hollowCheckbox.checked) {
+        hollowParams.style.display = 'block';
+    } else {
+        hollowParams.style.display = 'none';
+    }
+}
