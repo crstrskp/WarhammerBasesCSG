@@ -19,7 +19,7 @@ public class MovementTrayFactoryTest {
         UserValues.setAddHoleForMagnet(true);
         UserValues.setMovementTrayX(3);
         UserValues.setMovementTrayY(5);
-        UserValues.setMagnetDiameter(2.2);
+        UserValues.setMagnetDiameter(3.6);
         UserValues.setMagnetHoleHeight(1);
 
         csg.view(mtf.createRectangularMovementTrayWithRoundBases(3, 5));
