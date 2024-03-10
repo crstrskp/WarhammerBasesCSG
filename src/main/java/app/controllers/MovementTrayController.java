@@ -23,6 +23,10 @@ public class MovementTrayController
         var movementTrayHeight =    ctx.formParam("movementTrayHeight_mm");
         var addHoleForMagnet =      ctx.formParam("addHoleForMagnet");
 
+        var magnetDiameter =        ctx.formParam("magnetDiameter_mm");
+        var magnetHoleHeight =      ctx.formParam("magnetHeight_mm");
+
+
         UserValues.setChamfer_mm(Double.parseDouble(chamfer));
         UserValues.setBaseDiameter_mm(Double.parseDouble(baseDiameter));
         UserValues.setBaseHeight_mm(Double.parseDouble(baseHeight));
@@ -30,6 +34,8 @@ public class MovementTrayController
         UserValues.setSpacing_mm(Double.parseDouble(spacing));
         UserValues.setMovementTrayHeight_mm(Double.parseDouble(movementTrayHeight));
         UserValues.setAddHoleForMagnet(addHoleForMagnet != null ? true : false);
+        UserValues.setMagnetDiameter(Double.parseDouble(magnetDiameter));
+        UserValues.setMagnetHoleHeight(Double.parseDouble(magnetHoleHeight));
 
         UserValues.setMovementTrayX(Integer.parseInt(ctx.formParam("movementTrayX")));
         UserValues.setMovementTrayY(Integer.parseInt(ctx.formParam("movementTrayY")));
