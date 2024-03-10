@@ -17,13 +17,28 @@ public class WarhammerBaseController {
 
     private static void downloadBase(Context ctx)
     {
-        var chamfer =       ctx.formParam("chamfer_mm");
-        var baseDiameter =  ctx.formParam("baseDiameter_mm");
-        var baseHeight =    ctx.formParam("baseHeight_mm");
+        var chamfer =               ctx.formParam("chamfer_mm");
+        var baseDiameter =          ctx.formParam("baseDiameter_mm");
+        var baseHeight =            ctx.formParam("baseHeight_mm");
+
+        var addHoleForMagnet =      ctx.formParam("addHoleForMagnet");
+
+        var magnetDiameter =        ctx.formParam("magnetDiameter_mm");
+        var magnetHoleHeight =      ctx.formParam("magnetHeight_mm");
+
+        var makeHollow =            ctx.formParam("makeHollow");
+        var thickness =             ctx.formParam("thickness_mm");
 
         UserValues.setChamfer_mm(Double.parseDouble(chamfer));
         UserValues.setBaseDiameter_mm(Double.parseDouble(baseDiameter));
         UserValues.setBaseHeight_mm(Double.parseDouble(baseHeight));
+
+        UserValues.setAddHoleForMagnet(addHoleForMagnet != null ? true : false);
+        UserValues.setMagnetDiameter(Double.parseDouble(magnetDiameter));
+        UserValues.setMagnetHoleHeight(Double.parseDouble(magnetHoleHeight));
+
+        UserValues.setHollowBase(makeHollow != null ? true : false);
+        UserValues.setBaseThickness_mm(Double.parseDouble(thickness));
 
         ctx.attribute("selectedFile", "base.stl");
         FileController.generateFile(ctx);
