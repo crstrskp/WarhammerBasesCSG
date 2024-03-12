@@ -23,11 +23,11 @@ public class Main {
         WarhammerBaseController.addRoutes(app);
         MovementTrayController.addRoutes(app);
         MovementTraySquareController.addRoutes(app);
+        FileController.spinnerRouting(app);
 
         app.get("/", ctx -> ctx.render("index.html"));
 
         app.post("/", ctx -> UserValues.setDefaults(ctx));
-
 
         JavaCSG csg = JavaCSGFactory.createDefault();
 
