@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{fragments :: head('tjorne')}"></div>
+
+<body>
+
+<div id="main-container">
+  <div id="page-content">
+    <div th:replace="~{fragments :: header('warhammer website')}"></div>
+
+    <div id="input_menu">
+
+      <body>
+      <h1>Please fill in dimensions</h1>
+      <form method="post">
+        <div>
+          <label for="movementTrayX">Rows: </label>
+          <input type="number" id="movementTrayX" name="movementTrayX" step="1" value="5" required>
+        </div>
+        <div>
+          <label for="movementTrayY">Columns: </label>
+          <input type="number" id="movementTrayY" name="movementTrayY" step="1" value="2" required>
+        </div>
+        <div>
+          <label for="chamfer_mm">Chamfer (mm): </label>
+          <input type="number" id="chamfer_mm" name="chamfer_mm" step="0.01" value="1.5" required>
+        </div>
+        <div>
+          <label for="baseWidth_mm">Base Width (mm): </label>
+          <input type="number" id="baseWidth_mm" name="baseWidth_mm" step="0.1" value="30.5" required>
+        </div>
+        <div>
+          <label for="baseLength_mm">Base Length (mm): </label>
+          <input type="number" id="baseLength_mm" name="baseLength_mm" step="0.1" value="60.5" required>
+        </div>
+        <div>
+          <label for="baseHeight_mm">Base Height (mm): </label>
+          <input type="number" id="baseHeight_mm" name="baseHeight_mm" step="0.01" value="3.5" required>
+        </div>
+        <div>
+          <label for="borderWidth_mm">Border Width (mm): </label>
+          <input type="number" id="borderWidth_mm" name="borderWidth_mm" step="0.01" value=".8" required>
+        </div>
+        <div>
+          <label for="spacing_mm">Spacing (mm): </label>
+          <input type="number" id="spacing_mm" name="spacing_mm" step="0.2" value="0" required>
+        </div>
+        <div>
+          <label for="movementTrayHeight_mm">Movement Tray Height (mm): </label>
+          <input type="number" id="movementTrayHeight_mm" name="movementTrayHeight_mm" step="0.1" value="5"  required>
+        </div>
+        <div>
+          <label for="addHoleForMagnet"> Add hole for magnet</label>
+          <input type="checkbox" id="addHoleForMagnet" name="addHoleForMagnet" value="true">
+        </div>
+        <br>
+        <div id="magnetParams" style="display: block;">
+          <div>
+            <label for="magnetDiameter_mm">Magnet Diameter (mm): </label>
+            <input type="number" id="magnetDiameter_mm" name="magnetDiameter_mm" step="0.1" value="2.2" >
+          </div>
+          <div>
+            <label for="magnetHeight_mm">Magnet Height (mm): </label>
+            <input type="number" id="magnetHeight_mm" name="magnetHeight_mm" step="0.1" value="1" >
+          </div>
+        </div>
+        <!--        <button type="submit">Submit</button>-->
+        <button type="submit" id="download" formaction="/downloadMovementTraySquare">Download</button>
+
+        <!--        <button type="reset">Reset</button>-->
+      </form>
+      <br>
+
+      <div th:replace="~{modal :: #myModal}"></div>
+
+      <img src="placeholder_image1.jpg" alt="Image 1">
+      <img src="placeholder_image2.jpg" alt="Image 2">
+      </body>
+    </div>
+    <div th:replace="~{fragments :: footer}"></div>
+  </div>
+</div>
+<script src="../js/modal.js"></script>
+<script src="../js/movementtray.js"></script>
+</body>
+</html>
