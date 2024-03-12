@@ -29,6 +29,12 @@ public class FileController {
                     UserValues.getMovementTrayX(),
                     UserValues.getMovementTrayY());
         }
+        else if (ctx.attribute("selectedFile").equals("squaremovementtray.stl"))
+        {
+            shape = MovementTrayFactory.createRectangularMovementTray(
+                    UserValues.getMovementTrayX(),
+                    UserValues.getMovementTrayY());
+        }
         else
         {
             System.out.println("Error: No file selected");
