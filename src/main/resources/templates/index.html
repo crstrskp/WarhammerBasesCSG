@@ -7,7 +7,7 @@
 
 <div id="main-container">
     <div id="page-content">
-        <div th:replace="~{fragments :: header('Hej Rasmus')}"></div>
+        <div th:replace="~{fragments :: header('Warhammer bases and movement tray generators')}"></div>
 
         <div id="tabletop_menu">
 
@@ -17,7 +17,18 @@
                         <img th:src="@{/images/movementTray.png}"/>
                     </div>
                     <div class="tabletop_title">
-                        Movement Trays
+                        Movement Trays for circular circular
+                    </div>
+                </a>
+            </div>
+
+            <div class="tabletop_item">
+                <a href="/squaremovementtrays">
+                    <div class="tabletop-item-image">
+                        <img th:src="@{/images/movementTrayRectangular.png}"/>
+                    </div>
+                    <div class="tabletop_title">
+                        Movement Trays for rectangular bases
                     </div>
                 </a>
             </div>
