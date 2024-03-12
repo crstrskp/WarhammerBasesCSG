@@ -34,32 +34,32 @@
                         <label for="thickness_mm">Base Thickness: </label>
                         <input type="number" id="thickness_mm" name="thickness_mm" step="0.1" value="1.0">
                     </div>
+                </div>
+                <br>
+                <div>
+                    <label for="addHoleForMagnet"> Add hole for magnet</label>
+                    <input type="checkbox" id="addHoleForMagnet" name="addHoleForMagnet" value="true">
+                </div>
+                <div id="magnetParams" style="display: block;">
                     <div>
-                        <label for="addHoleForMagnet"> Add hole for magnet</label>
-                        <input type="checkbox" id="addHoleForMagnet" name="addHoleForMagnet" value="true">
+                        <label for="magnetDiameter_mm">Magnet Diameter (mm): </label>
+                        <input type="number" id="magnetDiameter_mm" name="magnetDiameter_mm" step="0.1" value="2.2">
                     </div>
-                    <div id="magnetParams" style="display: block;">
-                        <div>
-                            <label for="magnetDiameter_mm">Magnet Diameter (mm): </label>
-                            <input type="number" id="magnetDiameter_mm" name="magnetDiameter_mm" step="0.1" value="2.2">
-                        </div>
-                        <div>
-                            <label for="magnetHeight_mm">Magnet Height (mm): </label>
-                            <input type="number" id="magnetHeight_mm" name="magnetHeight_mm" step="0.1" value="1">
-                        </div>
+                    <div>
+                        <label for="magnetHeight_mm">Magnet Height (mm): </label>
+                        <input type="number" id="magnetHeight_mm" name="magnetHeight_mm" step="0.1" value="1">
                     </div>
                 </div>
                 <br>
                 <!--        <button type="submit">Submit</button>-->
-                <button type="submit" id="download" formaction="/downloadBase">Download</button>
+                <button type="submit" id="download" formaction="/downloadBase" onclick="startSpinner()">Download</button>
 
                     <!--        <button type="reset">Reset</button>-->
             </form>
             <br>
             <div th:replace="~{modal :: #myModal}"></div>
 
-            <img src="placeholder_image1.jpg" alt="Image 1">
-            <img src="placeholder_image2.jpg" alt="Image 2">
+
             </body>
 
         </div>
@@ -69,6 +69,7 @@
 </div>
 <script src="../js/modal.js"></script>
 <script src="../js/movementtray.js"></script>
+<script src="../js/spinnerStopper.js"></script>
 
 </body>
 </html>
