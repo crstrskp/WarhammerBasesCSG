@@ -21,6 +21,8 @@ public class UserValues
 
     private static boolean hollowBase;
     private static double baseThickness_mm;
+    private static double baseWidth_mm;
+    private static double baseLength_mm;
 
     public static void setDefaults(Context ctx)
     {
@@ -151,4 +153,9 @@ public class UserValues
     {
         return hollowBase;
     }
+
+    public static void setBaseWidth_mm(double width_mm) { UserValues.baseWidth_mm = width_mm; }
+    public static double getBaseWidth_mm() { return baseWidth_mm; }
+    public static void setBaseLength_mm(double length_mm) { UserValues.baseLength_mm = length_mm; }
+    public static double getBaseLength_mm() { return baseLength_mm; }
 }
