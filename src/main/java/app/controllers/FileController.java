@@ -3,6 +3,7 @@ package app.controllers;
 import app.Factories.BaseFactory;
 import app.Factories.MovementTrayFactory;
 import app.UserValues;
+import io.javalin.Javalin;
 import io.javalin.http.Context;
 import org.abstractica.javacsg.Geometry3D;
 import org.abstractica.javacsg.JavaCSG;
@@ -11,9 +12,11 @@ import java.io.*;
 
 public class FileController {
     private static JavaCSG csg;
+    private static boolean finishedGenerating = false;
 
     public static void generateFile(Context ctx)
     {
+        finishedGenerating = false;
         Geometry3D shape = null;
 
         if (ctx.attribute("selectedFile").equals("base.stl"))
@@ -69,9 +72,22 @@ public class FileController {
             ctx.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
             ctx.header("Content-Length", String.valueOf(file.length()));
             ctx.result(inputStream);
+            // TODO: STOP SPINNER!
+            finishedGenerating = true;
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void spinnerRouting(Javalin app)
+    {
+        app.get("/process-status", ctx -> {
+            // This is a simplistic example. You'll need to implement actual logic to check
+            // if your process is complete and return the appropriate status.
+            boolean processComplete = finishedGenerating; // Implement this.
+            ctx.result(String.valueOf(processComplete));
+        });
     }
     public static void setCsg(JavaCSG csg) {
         FileController.csg = csg;
