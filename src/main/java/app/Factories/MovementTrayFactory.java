@@ -55,8 +55,65 @@ public class MovementTrayFactory {
 
             for (int i = 0; i < x; i++) {
                 for (int j = 0; j < y; j++) {
-                    var _x = (UserValues.getSpacing_mm() + UserValues.getBaseDiameter_mm()) * i;
-                    var _y = (UserValues.getSpacing_mm() + UserValues.getBaseDiameter_mm()) * j;
+                    var _x = (UserValues.getSpacing_mm() + ((x-1) * UserValues.getSpacing_mm()) + UserValues.getBaseDiameter_mm()) * i;
+                    var _y = (UserValues.getSpacing_mm() + ((y-1) * UserValues.getSpacing_mm()) + UserValues.getBaseDiameter_mm()) * j;
+
+                    var magnetHole = csg.translate3D(_x, _y, 0).transform(magnetHoleCutout);
+                    magnetHoles.add(magnetHole);
+                }
+            }
+            base = csg.difference3D(base, magnetHoles);
+        }
+
+        return base;
+    }
+
+    public static Geometry3D createRectangularMovementTray(int x, int y)
+    {
+        double width = (2 * UserValues.getBorderWidth_mm()) + ((x-1) * UserValues.getSpacing_mm()) + (x * UserValues.getBaseWidth_mm());
+        double depth = (2 * UserValues.getBorderWidth_mm()) + ((y-1) * UserValues.getSpacing_mm()) + (y * UserValues.getBaseLength_mm());
+
+        Geometry3D base = BaseFactory.instance.buildRectangularBase(width, depth, UserValues.getChamfer_mm(), UserValues.getBorderWidth_mm(), UserValues.getMovementTrayHeight_mm());
+
+        // cutout
+        double baseWidth =  UserValues.getBaseWidth_mm();
+        double baseLength = UserValues.getBaseLength_mm();
+
+        var holeCutout = csg.box3D(baseWidth, baseLength, UserValues.getBaseHeight_mm(), false);
+        holeCutout = csg.translate3D((0.5* baseWidth),(0.5* baseLength), UserValues.getMovementTrayHeight_mm()- UserValues.getBaseHeight_mm()).transform(holeCutout);
+
+        List<Geometry3D> holes = new ArrayList<>();
+
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < y; j++)
+            {
+                Geometry3D hole = csg.translate3D
+                (
+                    (UserValues.getSpacing_mm() + UserValues.getBaseWidth_mm()) * i,
+                    (UserValues.getSpacing_mm() + UserValues.getBaseLength_mm()) * j,
+                    0
+                ).transform(holeCutout);
+
+                holes.add(hole);
+            }
+        }
+        base = csg.difference3D(base, holes);
+
+        // magnet holes
+        if (UserValues.getAddHoleForMagnet())
+        {
+
+            var magnetHoles = new ArrayList<Geometry3D>();
+            var holeHeight = UserValues.getMagnetHoleHeight();
+            var diameter = UserValues.getMagnetDiameter();
+            Geometry3D magnetHoleCutout = csg.cylinder3D(diameter, holeHeight, 128, false);
+            magnetHoleCutout = csg.translate3D((0.5 * UserValues.getBaseWidth_mm()), (0.5 * UserValues.getBaseLength_mm()), UserValues.getMovementTrayHeight_mm() - UserValues.getBaseHeight_mm() - holeHeight).transform(magnetHoleCutout);
+
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < y; j++) {
+                    var _x = UserValues.getBorderWidth_mm() + ((i-1) * UserValues.getSpacing_mm()) + UserValues.getBaseWidth_mm() * i;
+                    var _y = UserValues.getBorderWidth_mm() + ((j-1) * UserValues.getSpacing_mm()) + UserValues.getBaseLength_mm() * j;
 
                     var magnetHole = csg.translate3D(_x, _y, 0).transform(magnetHoleCutout);
                     magnetHoles.add(magnetHole);
