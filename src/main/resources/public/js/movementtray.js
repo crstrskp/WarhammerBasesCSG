@@ -11,13 +11,18 @@ magnetCheckbox.onchange = function() {
 }
 
 var hollowParams = document.getElementById("hollowParams");
-hollowParams.style.display = 'none';
+if (hollowParams != null)
+    hollowParams.style.display = 'none';
 
 var hollowCheckbox = document.getElementById("makeHollow");
-hollowCheckbox.onchange = function() {
-    if (hollowCheckbox.checked) {
-        hollowParams.style.display = 'block';
-    } else {
-        hollowParams.style.display = 'none';
+if (hollowCheckbox != null)
+{
+    hollowCheckbox.onchange = function()
+    {
+        if (hollowCheckbox.checked) {
+            hollowParams.style.display = 'block';
+        } else {
+            hollowParams.style.display = 'none';
+        }
     }
 }
